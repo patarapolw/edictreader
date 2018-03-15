@@ -1,7 +1,8 @@
-from edictreader.dict import Edict2
 from time import time
+from edictreader.dict import Edict2
 
-if __name__ == '__main__':
+
+def main():
     start = time()
     d = Edict2()
     end = time()
@@ -15,3 +16,7 @@ if __name__ == '__main__':
 
     print('__init__() takes {:.4f} seconds'.format(end - start))
     print('search() takes {:.4f} seconds'.format(end2 - start2))
+
+
+if __name__ == '__main__':
+    main()
