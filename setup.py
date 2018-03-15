@@ -14,13 +14,13 @@ setup(
     url='https://github.com/patarapolw/edictreader',
     author='Pacharapol Withayasakpunt',
     author_email='patarapolw@gmail.com',
-    keywords='EDICT JMdict CEDICT',
+    keywords='EDICT,JMdict,CEDICT',
     packages=find_packages(exclude=['test']),
     package_data={
         'edictreader': ['database/*']
     },
     include_package_data=True,
     python_requires='>=2.7',
-    install_requires=['lxml'],
+    install_requires=['lxml', 'xmltodict'],
     zip_safe=True,
 )
