@@ -1,17 +1,17 @@
 from time import time
-from edictreader.dict import Cedict
+from edictreader.dict import Edict2
 
 
-def main():
+def test_search_japanese():
     start = time()
-    d = Cedict()
+    d = Edict2()
     end = time()
 
-    for entry in d:
-        print(entry)
+    # for item in d:
+    #     print(item)
 
     start2 = time()
-    print(list(d.search({'simplified': '一点'})))
+    print(list(d.search({'japanese': '鼹鼠'})))
     end2 = time()
 
     print('__init__() takes {:.4f} seconds'.format(end - start))
@@ -19,4 +19,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    test_search_japanese()

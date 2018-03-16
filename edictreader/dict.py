@@ -1,12 +1,15 @@
 import re
 from lxml import etree
 import xmltodict
+from abc import ABCMeta, abstractmethod
 
 from edictreader.dir import database_path
 
 
-class Dict:
-    dictionary = dict()
+class Dict(metaclass=ABCMeta):
+    @abstractmethod
+    def __init__(self):
+        self.dictionary = dict()
 
     def __iter__(self):
         return iter(self.dictionary.values())
@@ -175,22 +178,18 @@ class JMdict(Dict):
                 for item in entry.xpath(xpath):
                     self.query[key].setdefault(item.text, []).append(entry)
 
-    def _query_to_list(func):
-        def inside(*args):
-            return [JMdict.format(item[0]) for item in func(*args)]
-        return inside
-
-    @_query_to_list
     def search(self, params: dict, exact_match=False):
         for k, v in params.items():
             self.load_query(k)
             if exact_match:
                 if v in self.query[k]:
-                    yield self.query[k][v]
+                    yield self.format(self.query[k][v][0])
+                    # The result is always nested with multiple elements inside.
+                    # e.g. [[<Element entry>, <Element entry>]]
             else:
                 for item in self.query[k]:
                     if v in item:
-                        yield self.query[k][v]
+                        yield self.format(self.query[k][v][0])
 
     @staticmethod
     def format(entry):

@@ -2,7 +2,7 @@ from time import time
 from edictreader.dict import JMdict
 
 
-def main():
+def test_search_japanese_with_query():
     start = time()
     d = JMdict()
     end = time()
@@ -20,4 +20,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    test_search_japanese_with_query()
