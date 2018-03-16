@@ -20,7 +20,7 @@ setup(
         'edictreader': ['database/*']
     },
     include_package_data=True,
-    python_requires='>=2.7',
+    python_requires='>=3.2',
     install_requires=['lxml', 'xmltodict'],
     zip_safe=True,
 )

@@ -14,7 +14,7 @@ class Dict(metaclass=ABCMeta):
     def __iter__(self):
         return iter(self.dictionary.values())
 
-    def search(self, params: dict, exact_match=False):
+    def search(self, params, exact_match=False):
         for k, v in params.items():
             for entry in self.dictionary.values():
                 if isinstance(entry[k], list):
@@ -178,7 +178,7 @@ class JMdict(Dict):
                 for item in entry.xpath(xpath):
                     self.query[key].setdefault(item.text, []).append(entry)
 
-    def search(self, params: dict, exact_match=False):
+    def search(self, params, exact_match=False):
         for k, v in params.items():
             self.load_query(k)
             if exact_match:
